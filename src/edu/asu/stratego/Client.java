@@ -2,8 +2,8 @@ package edu.asu.stratego;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import edu.asu.stratego.game.ClientGameManager;
+import edu.asu.stratego.game.board.Board;
 import edu.asu.stratego.gui.ClientStage;
 
 public class Client extends Application {
@@ -13,11 +13,14 @@ public class Client extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+        // Game board that will be shared between GUI and the Game Manager.
+        Board board = new Board();
+        
         // Display client GUI on the JavaFX Application thread.
-        ClientStage client = new ClientStage();
+        ClientStage client = new ClientStage(board);
         
         // Control the game on a separate thread.
-        Thread manager = new Thread(new ClientGameManager(client));
+        Thread manager = new Thread(new ClientGameManager(client, board));
         manager.setDaemon(true);
         manager.start();
     }

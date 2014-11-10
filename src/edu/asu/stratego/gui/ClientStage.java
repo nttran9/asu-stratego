@@ -1,5 +1,6 @@
 package edu.asu.stratego.gui;
 
+import edu.asu.stratego.game.board.Board;
 import javafx.stage.Stage;
 
 /**
@@ -13,11 +14,15 @@ public class ClientStage extends Stage {
     private WaitingScene    waiting;
     private BoardScene      board;
     
+    private Board gameBoard;
+    
     /**
      * Creates a new instance of ClientStage.
      */
-    public ClientStage() {
-        setBoardScene();
+    public ClientStage(Board board) {
+        gameBoard = board;
+        
+        setBoardScene(gameBoard);
         this.setTitle("ASU Stratego");
         this.setResizable(false);
         this.show();
@@ -45,8 +50,8 @@ public class ClientStage extends Stage {
      * Switch to the Board Scene.
      * @see edu.asu.stratego.gui.BoardScene
      */
-    public void setBoardScene() {
-        board = new BoardScene();
+    public void setBoardScene(Board gameBoard) {
+        board = new BoardScene(gameBoard);
         this.setScene(board.scene);
     }
 

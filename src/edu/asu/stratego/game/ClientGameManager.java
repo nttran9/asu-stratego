@@ -28,11 +28,16 @@ public class ClientGameManager implements Runnable {
     
     /**
      * Creates a new instance of ClientGameController.
+     * 
      * @param client the stage that the client is set in
+     * @param board shared between the GUI and ClientGameManager
+     * 
+     * @see edu.asu.stratego.game.ClientGameManager
      */
-    public ClientGameManager(ClientStage stage) {
+    public ClientGameManager(ClientStage stage, Board board) {
         this.turn  = PieceColor.RED;
         this.stage = stage;
+        this.board = board;
     }
 
     /**
@@ -45,7 +50,7 @@ public class ClientGameManager implements Runnable {
     public void run() {
         connectToServer();
         waitForOpponent();
-        
+
         setupBoard();
         // playGame();
     }
@@ -110,8 +115,7 @@ public class ClientGameManager implements Runnable {
      * positions.
      */
     private void setupBoard() {
-        Platform.runLater(() -> { stage.setBoardScene(); });
-        
+        Platform.runLater(() -> { stage.setBoardScene(board); });
         status = GameStatus.SETTING_UP;
     }
 }

@@ -6,12 +6,10 @@ import java.awt.Toolkit;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import edu.asu.stratego.game.board.Board;
-import edu.asu.stratego.gui.board.BoardPane;
 import edu.asu.stratego.media.ImageConstants;
 
 /**
@@ -29,7 +27,7 @@ public class BoardScene {
     /**
      * Creates a new instance of BoardScene.
      */
-    public BoardScene() {
+    public BoardScene(Board board) {
         
         /* ================ Board Design ================
          * 
@@ -71,9 +69,6 @@ public class BoardScene {
         Rectangle background = new Rectangle(0, 0, WIDTH, HEIGHT);
         background.setFill(new Color(1.0, 1.0, 1.0, 1.0));
         
-        // Create the board.
-        Board board = new Board();
-        
         // Resize the board.
         final int size = 10;
         for (int row = 0; row < size; ++row) {
@@ -92,5 +87,7 @@ public class BoardScene {
         board.getPane().setAlignment(Pos.CENTER);
         
         scene = new Scene(root, WIDTH, HEIGHT);
+        
+        System.out.println(board);
     }
 }
