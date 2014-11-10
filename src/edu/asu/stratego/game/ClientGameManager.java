@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javafx.application.Platform;
+import edu.asu.stratego.game.board.Board;
 import edu.asu.stratego.gui.ClientStage;
 import edu.asu.stratego.gui.ConnectionScene;
 
@@ -19,6 +20,10 @@ public class ClientGameManager implements Runnable {
     private Player player   = new Player();
     private Player opponent = new Player();
     
+    private GameStatus status;
+    private PieceColor turn;
+    private Board board;
+    
     private ClientStage stage;
     
     /**
@@ -26,6 +31,7 @@ public class ClientGameManager implements Runnable {
      * @param client the stage that the client is set in
      */
     public ClientGameManager(ClientStage stage) {
+        this.turn  = PieceColor.RED;
         this.stage = stage;
     }
 
@@ -40,12 +46,8 @@ public class ClientGameManager implements Runnable {
         connectToServer();
         waitForOpponent();
         
-        System.out.println(player.getNickname() + " " + player.getColor());
-        System.out.println(opponent.getNickname() + " " + opponent.getColor());
-        
-        Platform.runLater(() -> { stage.setBoardScene(); });
-        
-        // TODO Implement the rest of ClientGameManager here.
+        setupBoard();
+        // playGame();
     }
     
     /**
@@ -81,7 +83,6 @@ public class ClientGameManager implements Runnable {
      * </p>
      */
     private void waitForOpponent() {
-        // Set the ClientStage scene.
         Platform.runLater(() -> { stage.setWaitingScene(); });
         
         try {
@@ -102,5 +103,15 @@ public class ClientGameManager implements Runnable {
             // TODO Handle this exception somehow...
             e.printStackTrace();
         }
+    }
+    
+    /**
+     * The game setup. Players will place their pieces in their starting 
+     * positions.
+     */
+    private void setupBoard() {
+        Platform.runLater(() -> { stage.setBoardScene(); });
+        
+        status = GameStatus.SETTING_UP;
     }
 }

@@ -1,0 +1,7 @@
+.light-grass {
+    -fx-background-image: url("../../media/images/board/grass1.png");
+}
+
+.dark-grass {
+    -fx-background-image: url("../../media/images/board/grass2.png");
+}
