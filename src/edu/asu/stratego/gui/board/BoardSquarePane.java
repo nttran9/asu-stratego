@@ -3,13 +3,20 @@ package edu.asu.stratego.gui.board;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import edu.asu.stratego.gui.board.BoardSquareType;
-import edu.asu.stratego.media.ImageConstants;
 
-public class BoardSquare extends StackPane {
+/**
+ * JavaFX StackPane to graphically represent the individual squares of the 
+ * Stratego board.
+ */
+public class BoardSquarePane extends StackPane {
     
-    private ImageView piece = new ImageView(ImageConstants.blue_back);
+    private ImageView piece = new ImageView();
     
-    public BoardSquare(BoardSquareType type) {
+    /**
+     * Creates a new instance of BoardSquare.
+     * @param type the BoardSquareType of the BoardSquare
+     */
+    public BoardSquarePane(BoardSquareType type) {
         // Background image.
         if (type == BoardSquareType.LIGHT)
             this.setStyle("-fx-background-image: url(edu/asu/stratego/media/images/board/grass1.png)");
@@ -19,6 +26,10 @@ public class BoardSquare extends StackPane {
         this.getChildren().add(piece);
     }
     
+    /**
+     * Returns the ImageView representing the piece.
+     * @return ImageView of the piece at this Square.
+     */
     public ImageView getPiece() {
         return piece;
     }

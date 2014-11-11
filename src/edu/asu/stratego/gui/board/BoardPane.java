@@ -3,8 +3,15 @@ package edu.asu.stratego.gui.board;
 import edu.asu.stratego.game.board.Board;
 import javafx.scene.layout.GridPane;
 
+/**
+ * JavaFX GridPane to graphically represent the Stratego board.
+ */
 public class BoardPane extends GridPane {
     
+    /**
+     * Creates a new instance of BoardPane.
+     * @param board the Stratego board model
+     */
     public BoardPane(Board board) {
         final int size = 10;
         

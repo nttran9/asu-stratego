@@ -5,7 +5,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import javafx.application.Platform;
-import edu.asu.stratego.game.board.Board;
 import edu.asu.stratego.gui.ClientStage;
 import edu.asu.stratego.gui.ConnectionScene;
 
@@ -17,34 +16,25 @@ public class ClientGameManager implements Runnable {
     private ObjectOutputStream toServer;
     private ObjectInputStream  fromServer;
     
-    private Player player   = new Player();
-    private Player opponent = new Player();
-    
-    private GameStatus status;
-    private PieceColor turn;
-    private Board board;
-    
     private ClientStage stage;
     
     /**
      * Creates a new instance of ClientGameController.
      * 
      * @param client the stage that the client is set in
-     * @param board shared between the GUI and ClientGameManager
+     * @param game shared between the GUI and ClientGameManager
      * 
-     * @see edu.asu.stratego.game.ClientGameManager
+     * @see edu.asu.stratego.Game.ClientGameManager
      */
-    public ClientGameManager(ClientStage stage, Board board) {
-        this.turn  = PieceColor.RED;
+    public ClientGameManager(ClientStage stage) {
         this.stage = stage;
-        this.board = board;
     }
 
     /**
      * See ServerGameManager's run() method to understand how the client 
      * interacts with the server.
      * 
-     * @see edu.asu.stratego.game.ServerGameManager
+     * @see edu.asu.stratego.Game.ServerGameManager
      */
     @Override
     public void run() {
@@ -91,18 +81,19 @@ public class ClientGameManager implements Runnable {
         Platform.runLater(() -> { stage.setWaitingScene(); });
         
         try {
+            // I/O Streams.
             toServer = new ObjectOutputStream(ClientSocket.getInstance().getOutputStream());
             fromServer = new ObjectInputStream(ClientSocket.getInstance().getInputStream());
      
-            player.setNickname(stage.getConnection().getNickname());
-            toServer.writeObject(player);
-            opponent = (Player) fromServer.readObject();
+            // Exchange player information.
+            toServer.writeObject(Game.getPlayer());
+            Game.setOpponent((Player) fromServer.readObject());
             
             // Infer player color from opponent color.
-            if (opponent.getColor() == PieceColor.RED)
-                player.setColor(PieceColor.BLUE);
+            if (Game.getOpponent().getColor() == PieceColor.RED)
+                Game.getPlayer().setColor(PieceColor.BLUE);
             else
-                player.setColor(PieceColor.RED);
+                Game.getPlayer().setColor(PieceColor.RED);
         }
         catch (IOException | ClassNotFoundException e) {
             // TODO Handle this exception somehow...
@@ -115,7 +106,6 @@ public class ClientGameManager implements Runnable {
      * positions.
      */
     private void setupBoard() {
-        Platform.runLater(() -> { stage.setBoardScene(board); });
-        status = GameStatus.SETTING_UP;
+        Platform.runLater(() -> { stage.setBoardScene(); });
     }
 }
