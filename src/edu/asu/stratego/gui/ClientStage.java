@@ -17,7 +17,7 @@ public class ClientStage extends Stage {
      * Creates a new instance of ClientStage.
      */
     public ClientStage() {
-        setConnectionScene();
+        setBoardScene();
         this.setTitle("ASU Stratego");
         this.setResizable(false);
         this.show();
