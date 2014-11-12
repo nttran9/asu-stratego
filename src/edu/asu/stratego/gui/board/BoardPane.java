@@ -1,7 +1,10 @@
 package edu.asu.stratego.gui.board;
 
 import edu.asu.stratego.game.board.Board;
+<<<<<<< HEAD
 import edu.asu.stratego.media.ImageConstants;
+=======
+>>>>>>> 4ccd40a7d3c4ec4d32351c4c5b9af36363761c58
 import javafx.scene.layout.GridPane;
 
 /**
@@ -21,6 +24,7 @@ public class BoardPane extends GridPane {
                 add(board.getSquare(row, col).getPane(), row, col);
             }
         }
+<<<<<<< HEAD
         
         // Add the two lakes.
         board.getSquare(2, 4).getPane().setPiece(ImageConstants.lake1_1);
@@ -32,5 +36,7 @@ public class BoardPane extends GridPane {
         board.getSquare(7, 4).getPane().setPiece(ImageConstants.lake2_2);
         board.getSquare(6, 5).getPane().setPiece(ImageConstants.lake2_3);
         board.getSquare(7, 5).getPane().setPiece(ImageConstants.lake2_4);
+=======
+>>>>>>> 4ccd40a7d3c4ec4d32351c4c5b9af36363761c58
     }
 }
