@@ -1,8 +1,5 @@
 package edu.asu.stratego.gui;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import edu.asu.stratego.game.Game;
+import edu.asu.stratego.game.PieceColor;
 import edu.asu.stratego.gui.board.SetupPanel;
 import edu.asu.stratego.media.ImageConstants;
 
@@ -62,7 +60,13 @@ public class BoardScene {
         
         // Set the background color (turn indicator).
         Rectangle background = new Rectangle(0, 0, SIDE, SIDE);
-        background.setFill(new Color(0.48, 0.13, 0.13, 1.0));
+        if (Game.getPlayer().getColor() == PieceColor.RED) {
+            background.setFill(new Color(0.48, 0.13, 0.13, 1.0));
+        }
+        else {
+            background.setFill(new Color(0.22, 0.24, 0.55, 1.0));
+        }
+        
         
         // Resize the board.
         final int size = 10;
