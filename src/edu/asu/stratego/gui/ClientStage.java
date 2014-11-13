@@ -28,7 +28,7 @@ public class ClientStage extends Stage {
         SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
         UNIT = SIDE / 12;
         
-        setConnectionScene();
+        setBoardScene();
         this.setTitle("ASU Stratego");
         this.setResizable(false);
         this.show();

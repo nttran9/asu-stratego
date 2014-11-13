@@ -96,7 +96,7 @@ public class SetupPanel extends GridPane {
                                              "08",   "09",   "10", "BOMB",  "SPY", "FLAG" };
         
         for (int i = 0; i < 12; ++i) {
-            // Pieces.
+            // Piece images.
             pieceImages[i] = new ImageView(ImageConstants.
                     PIECE_MAP.get(playerColor + "_" + tempValues[i]));
             piecePane.add(pieceImages[i], i, 0);

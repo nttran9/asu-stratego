@@ -7,9 +7,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+
 import edu.asu.stratego.game.Game;
 import edu.asu.stratego.game.PieceColor;
-import edu.asu.stratego.gui.board.SetupPanel;
+import edu.asu.stratego.gui.board.setup.SetupPanel;
 import edu.asu.stratego.media.ImageConstants;
 
 /**
@@ -27,6 +28,11 @@ public class BoardScene {
      * Creates a new instance of BoardScene.
      */
     public BoardScene() {
+        
+        Game.getPlayer().setNickname("Player 1");
+        Game.getOpponent().setNickname("Player 2");
+        Game.getPlayer().setColor(PieceColor.RED);
+        Game.getOpponent().setColor(PieceColor.BLUE);
         
         /* ================ Board Design ================
          * 
