@@ -28,7 +28,7 @@ public class ClientStage extends Stage {
         SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
         UNIT = SIDE / 12;
         
-        setBoardScene();
+        setConnectionScene();
         this.setTitle("ASU Stratego");
         this.setResizable(false);
         this.show();
@@ -70,12 +70,17 @@ public class ClientStage extends Stage {
     }
 
     /**
+     * Returns the length/width divided by 12.
      * @return the unit
      */
     public static double getUnit() {
         return UNIT;
     }
     
+    /**
+     * Returns the length/width of the Board Scene.
+     * @return the side length of the scene
+     */
     public static int getSide() {
         return SIDE;
     }
