@@ -4,10 +4,13 @@ import javafx.scene.image.Image;
 
 public class ImageConstants {
     
+    public final static Image stratego_logo = new Image(ImageConstants.class.getResource("images/board/stratego_logo.png").toString());
+    
     // Board Images.
-    public final static Image border     = new Image(ImageConstants.class.getResource("images/board/border.png").toString());
-    public final static Image darkGrass  = new Image(ImageConstants.class.getResource("images/board/grass1.png").toString());
-    public final static Image lightGrass = new Image(ImageConstants.class.getResource("images/board/grass2.png").toString());
+    public final static Image setup_panel = new Image(ImageConstants.class.getResource("images/board/setup_panel.png").toString());
+    public final static Image border      = new Image(ImageConstants.class.getResource("images/board/border.png").toString());
+    public final static Image darkGrass   = new Image(ImageConstants.class.getResource("images/board/grass1.png").toString());
+    public final static Image lightGrass  = new Image(ImageConstants.class.getResource("images/board/grass2.png").toString());
 
     public final static Image lake1_1 = new Image(ImageConstants.class.getResource("images/board/lake1_1.png").toString());
     public final static Image lake1_2 = new Image(ImageConstants.class.getResource("images/board/lake1_2.png").toString());

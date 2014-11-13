@@ -3,15 +3,12 @@ package edu.asu.stratego.game;
 import edu.asu.stratego.media.ImageConstants;
 import javafx.scene.image.Image;
 
-class Piece {
+public class Piece {
     private PieceColor color;
     private PieceType  type;
     
     private boolean isOpponentPiece;
-    private Image image;
-    
-    private int row;
-    private int col;
+    private Image   image;
     
     /**
      * Creates a new instance of Piece.

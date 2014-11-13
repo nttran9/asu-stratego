@@ -1,9 +1,6 @@
 package edu.asu.stratego.gui.board;
 
-<<<<<<< HEAD
 import javafx.scene.image.Image;
-=======
->>>>>>> 4ccd40a7d3c4ec4d32351c4c5b9af36363761c58
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import edu.asu.stratego.gui.board.BoardSquareType;
@@ -37,7 +34,6 @@ public class BoardSquarePane extends StackPane {
     public ImageView getPiece() {
         return piece;
     }
-<<<<<<< HEAD
     
     /**
      * Sets the ImageView representing the piece.
@@ -46,6 +42,4 @@ public class BoardSquarePane extends StackPane {
     public void setPiece(Image p) {
         piece.setImage(p);
     }
-=======
->>>>>>> 4ccd40a7d3c4ec4d32351c4c5b9af36363761c58
 }

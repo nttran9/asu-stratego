@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import edu.asu.stratego.game.Game;
+import edu.asu.stratego.gui.board.SetupPanel;
 import edu.asu.stratego.media.ImageConstants;
 
 /**
@@ -17,9 +18,6 @@ import edu.asu.stratego.media.ImageConstants;
  * event handlers for playing a game of Stratego.
  */
 public class BoardScene {
-    
-    private final double UNIT;
-    private final int SIDE;
     
     Scene scene;
     
@@ -58,32 +56,35 @@ public class BoardScene {
          * to indicate which player's turn it is.
          */
         
-        // Calculate the Scene dimensions from screen resolution.
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
-        UNIT = SIDE / 12;
-        
         // Set the background color (turn indicator).
-        Rectangle background = new Rectangle(0, 0, SIDE, SIDE);
-        background.setFill(new Color(1.0, 1.0, 1.0, 1.0));
+        Rectangle background = new Rectangle(0, 0, ClientStage.getSide(), ClientStage.getSide());
+        background.setFill(new Color(0.48, 0.13, 0.13, 1.0));
         
         // Resize the board.
         final int size = 10;
         for (int row = 0; row < size; ++row) {
             for (int col = 0; col < size; ++col) {
-                Game.getBoard().getSquare(row, col).getPane().getPiece().setFitHeight(UNIT);
-                Game.getBoard().getSquare(row, col).getPane().getPiece().setFitWidth(UNIT);
+                Game.getBoard().getSquare(row, col).getPane().getPiece().setFitHeight(ClientStage.getUnit());
+                Game.getBoard().getSquare(row, col).getPane().getPiece().setFitWidth(ClientStage.getUnit());
             }
         }
         
+        // Set the setup panel.
+        SetupPanel panel = new SetupPanel();
+        
         // Create the border.
         ImageView border = new ImageView(ImageConstants.border);
-        border.setFitHeight(SIDE);
-        border.setFitWidth(SIDE);
+        border.setFitHeight(ClientStage.getSide());
+        border.setFitWidth(ClientStage.getSide());
         
-        StackPane root = new StackPane(background, Game.getBoard().getPane(), border);
+        StackPane root = new StackPane(background, Game.getBoard().getPane(), border, panel);
         Game.getBoard().getPane().setAlignment(Pos.CENTER);
+        panel.setAlignment(Pos.CENTER);
         
-        scene = new Scene(root, SIDE, SIDE);
+        scene = new Scene(root, ClientStage.getSide(), ClientStage.getSide());
+    }
+    
+    public double getUnit() {
+        return ClientStage.getUnit();
     }
 }

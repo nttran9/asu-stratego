@@ -1,5 +1,8 @@
 package edu.asu.stratego.gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javafx.stage.Stage;
 
 /**
@@ -13,10 +16,18 @@ public class ClientStage extends Stage {
     private WaitingScene    waiting;
     private BoardScene      board;
     
+    private static double UNIT;
+    private static int    SIDE;
+    
     /**
      * Creates a new instance of ClientStage.
      */
     public ClientStage() {
+        // Calculate the Scene dimensions from screen resolution.
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
+        UNIT = SIDE / 12;
+        
         setBoardScene();
         this.setTitle("ASU Stratego");
         this.setResizable(false);
@@ -56,5 +67,16 @@ public class ClientStage extends Stage {
      */
     public ConnectionScene getConnection() {
         return connection;
+    }
+
+    /**
+     * @return the unit
+     */
+    public static double getUnit() {
+        return UNIT;
+    }
+    
+    public static int getSide() {
+        return SIDE;
     }
 }
