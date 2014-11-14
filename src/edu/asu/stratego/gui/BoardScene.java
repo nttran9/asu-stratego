@@ -28,12 +28,12 @@ public class BoardScene {
      * Creates a new instance of BoardScene.
      */
     public BoardScene() {
-        /*
+        
         Game.getPlayer().setNickname("Player 1");
         Game.getOpponent().setNickname("Player 2");
         Game.getPlayer().setColor(PieceColor.RED);
         Game.getOpponent().setColor(PieceColor.BLUE);
-        */
+        
         /* ================ Board Design ================
          * 
          * The scene is divided into a 12 x 12 grid.
@@ -96,7 +96,7 @@ public class BoardScene {
         border.setFitWidth(SIDE);
         
         StackPane root = new StackPane(background, Game.getBoard().getPiecePane(), 
-                                       border, Game.getBoard().getEventPane(), panel);
+                                       Game.getBoard().getEventPane(), panel, border);
         root.setMaxSize(SIDE, SIDE);
         Game.getBoard().getPiecePane().setAlignment(Pos.CENTER);
         Game.getBoard().getEventPane().setAlignment(Pos.CENTER);

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
 import edu.asu.stratego.game.Game;
 import edu.asu.stratego.game.GameStatus;
 import edu.asu.stratego.media.ImageConstants;
@@ -52,14 +53,12 @@ public class BoardSquareEventPane extends GridPane {
         // Lakes are always invalid.
         if (col == 2 || col == 3 || col == 6 || col == 7) {
             if (row == 4 || row == 5) {
-                System.out.println("Lake");
                 return false;
             }
         }
         
         // If game is setting up and outside initial setup area.
         if (Game.getStatus() == GameStatus.SETTING_UP && row <= 5) {
-            System.out.println("Player area");
             return false;
         }
         
