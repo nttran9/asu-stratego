@@ -14,6 +14,8 @@ public class BoardSquarePane extends StackPane {
     
     private ImageView piece = new ImageView();
     
+    
+    
     /**
      * Creates a new instance of BoardSquare.
      * @param type the BoardSquareType of the BoardSquare

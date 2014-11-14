@@ -28,7 +28,15 @@ public class BoardSquareEventPane extends GridPane {
         @Override
         public void handle(MouseEvent e) {
             ImageView hover = (ImageView) e.getSource();
-            hover.setImage(ImageConstants.HIGHLIGHT_VALID);
+            int hoverRow = GridPane.getRowIndex(hover);
+            int hoverCol = GridPane.getColumnIndex(hover);
+            
+            System.out.println(hoverRow + " " + hoverCol);
+            
+            if (isHoverValid(hoverRow, hoverCol))
+                hover.setImage(ImageConstants.HIGHLIGHT_VALID);
+            else
+                hover.setImage(ImageConstants.HIGHLIGHT_INVALID);
         };
     }
     
@@ -40,10 +48,19 @@ public class BoardSquareEventPane extends GridPane {
         };
     }
     
-    private boolean isHoverValid() {
-        // TODO Player's own piece is invalid.
-        if (Game.getStatus() == GameStatus.IN_PROGRESS) {
-            
+    private boolean isHoverValid(int row, int col) {
+        // Lakes are always invalid.
+        if (col == 2 || col == 3 || col == 6 || col == 7) {
+            if (row == 4 || row == 5) {
+                System.out.println("Lake");
+                return false;
+            }
+        }
+        
+        // If game is setting up and outside initial setup area.
+        if (Game.getStatus() == GameStatus.SETTING_UP && row <= 5) {
+            System.out.println("Player area");
+            return false;
         }
         
         return true;
