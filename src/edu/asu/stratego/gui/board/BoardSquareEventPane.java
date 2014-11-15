@@ -69,18 +69,20 @@ public class BoardSquareEventPane extends GridPane {
             
             // Selected Piece
             PieceType selectedPieceType = SetupPieces.getSelectedPieceType();
-            int selectedPieceCount = SetupPieces.getSelectedPieceCount(selectedPieceType);
-
+            int selectedPieceCount = 0;
+            if (selectedPieceType != null)
+                selectedPieceCount = SetupPieces.getSelectedPieceCount(selectedPieceType);
             PieceColor playerColor = Game.getPlayer().getColor();
             
             if (Game.getStatus() == GameStatus.SETTING_UP && isHoverValid(selectRow, selectCol)) {
             	// If the square has a piece
                 if (hoverPiece != null) {
                 	// Removing existing piece (same piece on board as selected)
-                    if (hoverPiece.getPieceType() == selectedPieceType) {
+                    if (hoverPiece.getPieceType() == selectedPieceType || selectedPieceType == null) {
                         square.setPiece(null);
                         squarePane.setPiece(null);
-                        SetupPieces.incrementSelectedPieceCount(selectedPieceType);
+                        if (selectedPieceType != null)
+                            SetupPieces.incrementSelectedPieceCount(selectedPieceType);
                         System.out.println("Removed existing piece (" + selectedPieceType + ")");
                     }
                     // Replacing existing piece with a new piece
