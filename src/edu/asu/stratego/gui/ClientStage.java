@@ -23,7 +23,7 @@ public class ClientStage extends Stage {
      * Creates a new instance of ClientStage.
      */
     public ClientStage() {
-        // Calculate the Scene dimensions from screen resolution.
+        // Calculate the BoardScene dimensions from screen resolution.
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         SIDE = (int) (0.85 * screenSize.getHeight()) / 12 * 12;
         UNIT = SIDE / 12;
@@ -70,16 +70,14 @@ public class ClientStage extends Stage {
     }
 
     /**
-     * Returns the length/width divided by 12.
-     * @return the unit
+     * @return the board scene side length (in pixels) divided by 12.
      */
     public static double getUnit() {
         return UNIT;
     }
     
     /**
-     * Returns the length/width of the Board Scene.
-     * @return the side length of the scene
+     * @return the side length of the board scene (in pixels)
      */
     public static int getSide() {
         return SIDE;
