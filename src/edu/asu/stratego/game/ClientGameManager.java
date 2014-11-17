@@ -14,6 +14,8 @@ import edu.asu.stratego.gui.ConnectionScene;
  */
 public class ClientGameManager implements Runnable {
     
+    private static Object setupPieces = new Object();
+    
     private ObjectOutputStream toServer;
     private ObjectInputStream  fromServer;
     
@@ -41,6 +43,15 @@ public class ClientGameManager implements Runnable {
 
         setupBoard();
         //playGame();
+    }
+    
+    /**
+     * @return Object used for communication between the Setup Board GUI and 
+     * the ClientGameManager to indicate when the player has finished setting 
+     * up their pieces.
+     */
+    public static Object getSetupPieces() {
+        return setupPieces;
     }
     
     /**
@@ -107,6 +118,17 @@ public class ClientGameManager implements Runnable {
     private void setupBoard() {
         Platform.runLater(() -> { stage.setBoardScene(); });
         
-        
+        synchronized (setupPieces) {
+            try {
+                // Wait for the player to set up their pieces.
+                setupPieces.wait();
+                System.out.println("Game Status changed to WAITING_OPP");
+                Game.setStatus(GameStatus.WAITING_OPP);
+                
+            }
+            catch (InterruptedException e) {
+                // TODO Handle this exception somehow...
+            }
+        }
     }
 }

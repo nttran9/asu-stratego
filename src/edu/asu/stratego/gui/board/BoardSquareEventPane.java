@@ -8,13 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-
 import edu.asu.stratego.game.Game;
 import edu.asu.stratego.game.GameStatus;
 import edu.asu.stratego.game.Piece;
 import edu.asu.stratego.game.PieceColor;
 import edu.asu.stratego.game.PieceType;
 import edu.asu.stratego.game.board.Square;
+import edu.asu.stratego.gui.board.setup.SetupPanel;
 import edu.asu.stratego.gui.board.setup.SetupPieces;
 import edu.asu.stratego.media.ImageConstants;
 
@@ -167,6 +167,8 @@ public class BoardSquareEventPane extends GridPane {
                 }
             }
         }
+        
+        SetupPanel.finishSetup();
     }
     
     /**
@@ -187,6 +189,10 @@ public class BoardSquareEventPane extends GridPane {
         
         // The game is setting up and the square is outside of the setup area.
         if (Game.getStatus() == GameStatus.SETTING_UP && row <= 5)
+            return false;
+        
+        // The player has finished setting up and is waiting for the opponent.
+        if (Game.getStatus() == GameStatus.WAITING_OPP)
             return false;
         
         return true;
