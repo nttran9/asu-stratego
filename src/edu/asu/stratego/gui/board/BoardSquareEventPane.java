@@ -8,12 +8,13 @@ import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+
 import edu.asu.stratego.game.Game;
 import edu.asu.stratego.game.GameStatus;
 import edu.asu.stratego.game.Piece;
 import edu.asu.stratego.game.PieceColor;
 import edu.asu.stratego.game.PieceType;
-import edu.asu.stratego.game.board.Square;
+import edu.asu.stratego.game.board.ClientSquare;
 import edu.asu.stratego.gui.board.setup.SetupPanel;
 import edu.asu.stratego.gui.board.setup.SetupPieces;
 import edu.asu.stratego.media.ImageConstants;
@@ -85,7 +86,7 @@ public class BoardSquareEventPane extends GridPane {
                     .getSquare(row, col)
                     .getPiecePane();
             
-            Square square = Game.getBoard().getSquare(row, col);
+            ClientSquare square = Game.getBoard().getSquare(row, col);
             Piece squarePiece = square.getPiece();
             
             // Player color.
@@ -144,7 +145,7 @@ public class BoardSquareEventPane extends GridPane {
         for (int col = 0; col < 10; ++col) {
             for (int row = 6; row < 10; ++row) {
                 BoardSquarePane squarePane = Game.getBoard().getSquare(row, col).getPiecePane();
-                Square square = Game.getBoard().getSquare(row, col);
+                ClientSquare square = Game.getBoard().getSquare(row, col);
                 Piece squarePiece = square.getPiece();
                
                 ArrayList<PieceType> availTypes = 

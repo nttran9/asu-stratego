@@ -122,11 +122,12 @@ public class ClientGameManager implements Runnable {
             try {
                 // Wait for the player to set up their pieces.
                 setupPieces.wait();
-                System.out.println("Game Status changed to WAITING_OPP");
                 Game.setStatus(GameStatus.WAITING_OPP);
                 
+                // Send initial piece positions to server.
+                toServer.writeObject(new SetupBoard());
             }
-            catch (InterruptedException e) {
+            catch (InterruptedException | IOException e) {
                 // TODO Handle this exception somehow...
             }
         }
